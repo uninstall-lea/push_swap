@@ -6,8 +6,14 @@
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:56:30 by lbisson           #+#    #+#             */
-/*   Updated: 2022/01/14 16:56:32 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/02/28 18:28:28 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
+typedef struct s_stack
+{
+	int *arr;
+}				t_stack;

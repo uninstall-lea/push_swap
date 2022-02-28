@@ -6,11 +6,36 @@
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:05:54 by lbisson           #+#    #+#             */
-/*   Updated: 2022/01/14 16:55:20 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/02/28 18:53:11 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_fptr	dispach(const char *s, char *a, char *b)
+t_stack	*input_to_int(int ac, char **av)
+{
+	int i;
+	t_stack a;
+
+	i = 0;
+	if (ac == 0)
+		return (0);
+	a.arr = malloc(4 * (ac - 1));
+	while (i < ac)
+		a.arr[i++] = ft_atoi(av[i + 1]);
+	return (a);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*t_fptr	dispach(const char *s, char *a, char *b)
 {
 	size_t		i;
 	size_t		index;
@@ -38,5 +63,4 @@ t_fptr	dispach(const char *s, char *a, char *b)
 	}
 	return (NULL);
 }
-
-
+*/
