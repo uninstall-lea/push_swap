@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
@@ -6,25 +6,67 @@
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:05:54 by lbisson           #+#    #+#             */
-/*   Updated: 2022/02/28 18:53:11 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/03/01 18:34:15 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_stack	*input_to_int(int ac, char **av)
+t_stack	input_to_int(int ac, char **av)
 {
 	int i;
 	t_stack a;
 
-	i = 0;
+	i = -1;
 	if (ac == 0)
 		return (0);
-	a.arr = malloc(4 * (ac - 1));
-	while (i < ac)
-		a.arr[i++] = ft_atoi(av[i + 1]);
+	a.arr = malloc(sizeof(t_stack) * (ac - 1));
+	if (!a.arr)
+		return (a);
+	while (++i < ac - 1)
+		a.arr[i] = ft_atoi(av[i + 1]);
 	return (a);
 }
 
+void	check_int_error(int *arr)
+{
+	int	i;
+	int	j;
 
+	i = 0;
+	while (arr[i])
+	{
+		j = 0;
+		while (arr[i + j])
+		{
+			if (arr[i] == arr[i + j])
+				"Error\n";
+			j++;
+		}
+	}
+	i++;
+	return ;
+}
+
+void	check_input_error(int ac, char **av)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	if (ac == 0)
+		"Error\n";
+	while (av[i])
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (av[i][j] <= '0' && av[i][j] >= '9')
+				"Error\n";
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
 
 
 
