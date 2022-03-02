@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 17:51:03 by lbisson           #+#    #+#             */
-/*   Updated: 2021/12/03 00:59:44 by lbisson          ###   ########.fr       */
+/*   Created: 2021/11/23 16:02:52 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/01 03:25:47 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ps_lib.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memset(void *ptr, int c, size_t n)
 {
-	char	*d;
-	char	*s;
+	size_t	i;
+	char	*dest;
 
-	d = (char *) dest;
-	s = (char *) src;
-	if (src < dest)
+	i = 0;
+	dest = (char *) ptr;
+	while (i < n)
 	{	
-		while (n)
-		{	
-			n--;
-			d[n] = s[n];
-		}
+		dest[i] = (unsigned char)c;
+		i++;
 	}
-	else
-		ft_memcpy(dest, src, n);
-	return (dest);
+	return (ptr);
 }

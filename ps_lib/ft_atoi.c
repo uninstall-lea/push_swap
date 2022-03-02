@@ -1,16 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 16:00:31 by lbisson           #+#    #+#             */
-/*   Updated: 2021/12/01 18:38:00 by lbisson          ###   ########.fr       */
+/*   Created: 2021/11/25 16:09:33 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/03 00:58:01 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "ps_lib.h"
+
+int	ft_atoi(const char *nptr)
 {
-	return (c >= ' ' && c <= '~');
+	int	res;
+	int	sign;
+
+	res = 0;
+	sign = 1;
+	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
+		nptr++;
+	if (*nptr == '+' || *nptr == '-')
+	{
+		if (*nptr == '-')
+			sign = -1;
+		nptr++;
+	}
+	while (ft_isdigit(*nptr))
+	{
+		res = (res * 10) + (*nptr - '0');
+		nptr++;
+	}
+	return (res * sign);
 }

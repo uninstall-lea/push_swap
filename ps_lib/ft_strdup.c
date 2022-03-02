@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 17:42:12 by lbisson           #+#    #+#             */
-/*   Updated: 2021/12/01 04:06:42 by lbisson          ###   ########.fr       */
+/*   Created: 2021/11/25 17:11:00 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/01 17:44:57 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ps_lib.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+char	*ft_strdup(const char *src)
 {
-	t_list	*tmp;
+	size_t	len;
+	char	*new_str;
 
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = tmp;
-	}
+	len = ft_strlen(src);
+	new_str = ft_calloc(sizeof(char), len + 1);
+	if (!new_str)
+		return (NULL);
+	ft_memcpy(new_str, src, len + 1);
+	return (new_str);
 }

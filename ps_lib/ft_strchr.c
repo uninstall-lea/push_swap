@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 17:20:35 by lbisson           #+#    #+#             */
-/*   Updated: 2021/12/02 04:30:20 by lbisson          ###   ########.fr       */
+/*   Created: 2021/11/25 12:52:18 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/02 23:56:02 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ps_lib.h"
 
-void	ft_lstadd_back(t_list **alst, t_list *new)
+char	*ft_strchr(const char *str, int c)
 {
-	t_list	*tmp;
-
-	if (!*alst)
-		*alst = new;
-	else
+	while (*str)
 	{
-		tmp = ft_lstlast(*alst);
-		tmp->next = new;
+		if (*str == c % 256)
+			return ((char *)str);
+		str++;
 	}
+	if (*str == '\0' && c == '\0')
+		return ((char *)str);
+	return (NULL);
 }

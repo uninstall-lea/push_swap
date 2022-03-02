@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,88 +10,75 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ps_lib.h"
 
-static size_t	ft_nb_words(char const *str, char c)
+static size_t	nb_args(const char *str)
 {
-	size_t	nb_words;
+	size_t	nb_args;
 
-	nb_words = 0;
+	nb_args = 0;
 	while (*str)
 	{
-		while (*str && *str == c)
+		while (*str && ft_strchr(WHITESPACES, *str))
 			str++;
-		if (*str && *str != c)
-			nb_words++;
-		while (*str && *str != c)
+		if (*str && !ft_strchr(WHITESPACES, *str))
+			nb_args++;
+		while (*str && !ft_strchr(WHITESPACES, *str))
 			str++;
 	}
-	return (nb_words);
+	return (nb_args);
 }
 
-static size_t	ft_word_len(const char *str, char c)
+static size_t	arg_len(const char *str)
 {
-	size_t	word_len;
+	size_t	arg_len;
 
-	word_len = 0;
-	while (*str && *str != c)
+	arg_len = 0;
+	while (*str && !ft_strchr(WHITESPACES, *str))
 	{
-		word_len++;
+		arg_len++;
 		str++;
 	}
-	return (word_len);
+	return (arg_len);
 }
 
-static void	ft_free(char **str, size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-static void	create_and_fill(char **str, char const *s, char c, size_t nb_words)
+static void	create_and_fill(size_t nb_args, const char *s, char **str)
 {
 	size_t	i;
 	size_t	j;
-	size_t	word_len;
+	size_t	len;
 
 	i = 0;
 	j = 0;
-	while (i < nb_words)
+	while (i < nb_args)
 	{
-		while (s[j] && s[j] == c)
+		while (s[j] && ft_strchr(WHITESPACES, s[j]))
 			j++;
-		word_len = ft_word_len(s + j, c);
-		str[i] = ft_substr(s, j, word_len);
+		len = arg_len(s + j);
+		str[i] = ft_substr(s, j, len);
 		if (!str[i])
 		{
 			ft_free(str, i);
 			return ;
 		}
-		while (s[j] && s[j] != c)
+		while (s[j] && !ft_strchr(WHITESPACES, s[j]))
 			j++;
 		i++;
 	}
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_args(char const *s)
 {
-	size_t	nb_words;
+	size_t	nargs;
 	char	**split_str;
 
 	if (!s)
 		return (NULL);
-	nb_words = ft_nb_words(s, c);
-	split_str = malloc(sizeof(char *) * (nb_words + 1));
+	nargs = nb_args(s);
+	split_str = malloc(sizeof(char *) * (nargs + 1));
 	if (!split_str)
 		return (NULL);
-	split_str[nb_words] = NULL;
-	create_and_fill(split_str, s, c, nb_words);
+	split_str[nargs] = NULL;
+	create_and_fill(nargs, s, split_str);
 	return (split_str);
 }

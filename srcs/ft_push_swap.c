@@ -1,7 +1,7 @@
 /**************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*  ft_push_swap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,102 +10,67 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-t_stack	input_to_int(int ac, char **av)
-{
-	int i;
-	t_stack a;
+# include "../incs/push_swap.h"
+# include <stdio.h>
 
-	if (ac == 1)
-		return (0);
-	a.arr = malloc(sizeof(t_stack) * (ac - 1));
+t_stack	if_one_arg(int ac, char **av)
+{
+	int		i;
+	char	**stock_args;
+	t_stack	a;
+
+	stock_args = ft_split_args(av[1]);
+	i = 0;
+	while (stock_args[i])
+		i++;
+	a.arr = malloc(sizeof(int) * i);
 	if (!a.arr)
 		return (a);
 	i = -1;
 	while (++i < ac - 1)
-		a.arr[i] = ft_atoi(av[i]);
-	check_duplicate(ac - 1, a.arr);
-	check_int_range(a.arr, av);
+		a.arr[i] = ft_atoi(stock_args[i]);
+	check_error(ac, a.arr, stock_args);
+	ft_free(stock_args, i);
 	return (a);
 }
 
-void	check_int_range(int *arr, char **av)
+t_stack	input_to_int(int ac, char **av)
 {
-	int				i;
-	long long int	big_num;
+	int 	i;
+	t_stack a;
 
-	i = 1;
-	while (av[i])
-	{
-		big_num = ft_atoll(av[i++])
-		if (big_num < INT_MIN || big_num > INT_MAX)
-		{	
-			ft_printf("Error\n");
-			free(a.arr);
-			exit(EXIT_FAILURE);
-		}
-	}
+	if (ac == 2)
+		return (if_one_arg(ac, av));
+	a.arr = malloc(sizeof(int) * (ac - 1));
+	if (!a.arr)
+		return (a);
+	i = -1;
+	while (++i < ac - 1)
+		a.arr[i] = ft_atoi(av[i + 1]);
+	check_error(ac, a.arr, av + 1);
+	return (a);
 }
 
-void	check_duplicate(int size, int *arr)
+void	arr_print(int size, int *arr)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (i < size)
 	{
-		j = 0;
-		while (arr[i + j])
-		{
-			if (arr[i] == arr[i + j])
-			{
-				ft_printf("Error\n");
-				free(a.arr);
-				exit(EXIT_FAILURE);
-			}	
-			j++;
-		}
+		printf("%d\n", arr[i]);
 		i++;
 	}
+	printf("-----------\n  stack a\n");
 }
 
-void	check_input(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int	i;
-	int j;
-
-	if (ac == 0)
-	{
-		ft_printf("Error\n");
-		free(a.arr);
-		exit(EXIT_FAILURE);
-	}
-	i = 1;
-	while (av[i])
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (av[i][j] < '0' || av[i][j] > '9')
-			{
-				ft_printf("Error\n");
-				free(a.arr);
-				exit(EXIT_FAILURE);
-			}
-			j++;
-		}
-		i++;
-	}
+	t_stack a = input_to_int(ac, av);
+	arr_print(ac - 1, a.arr);
+	free(a.arr);
+	return (0);
 }
-
-
-
-
-
-
-
-
-
 
 /*t_fptr	dispach(const char *s, char *a, char *b)
 {

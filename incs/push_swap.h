@@ -13,7 +13,17 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "../ps_lib/ps_lib.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+
+void		check_error(int ac, int *arr, char **av);
+
+typedef enum {false, true} t_bool;
 typedef struct s_stack
 {
 	int *arr;
 }				t_stack;
+
+#endif

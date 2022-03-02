@@ -1,44 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 15:17:53 by lbisson           #+#    #+#             */
-/*   Updated: 2022/01/14 16:28:58 by lbisson          ###   ########.fr       */
+/*   Created: 2021/11/25 16:51:21 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/02 02:32:09 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swap(char *c1, char *c2)
+#include "ps_lib.h"
+
+void	*ft_calloc(size_t elem_size, size_t elem_count)
 {
-	char	tmp;
+	void	*new_elem;
 
-	tmp = *c1;
-	*c1 = *c2;
-	*c2 = *c1;
-}
-
-void	ft_push(char *dst, char *src)
-{
-	ft_memmove(dst,ft_strlen(dst));
-	*dst = *src;
-}
-
-void	ft_rotate(char *s)
-{
-	size_t len;
-
-	len = ft_strlen(s);
-	ft_memmove(s[len], len);
-	s[len] = *s;
-}
-
-void	ft_rrotate(char *s)
-{
-	size_t len;
-
-	len = ft_strlen(s);
-	ft_memmove(s, len);
-	*s = s[len];
+	if (elem_size == 0 || elem_count == 0)
+	{
+		elem_size = 1;
+		elem_count = 1;
+	}
+	new_elem = malloc(elem_size * elem_count);
+	if (!new_elem)
+		return (NULL);
+	ft_bzero(new_elem, elem_size * elem_count);
+	return (new_elem);
 }

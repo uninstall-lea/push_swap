@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 14:51:38 by lbisson           #+#    #+#             */
-/*   Updated: 2021/12/03 01:00:14 by lbisson          ###   ########.fr       */
+/*   Created: 2021/11/24 15:40:44 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/03 00:58:35 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ps_lib.h"
 
-char	*ft_strtrim(const char *s1, const char *set)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t	len;
-	size_t	start;
+	size_t	i;
 
-	if (!s1)
-		return (NULL);
-	len = 0;
-	start = 0;
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	len = ft_strlen(s1);
-	while (len && ft_strchr(set, s1[len - 1]))
-		len--;
-	return (ft_substr(s1 + start, 0, len - start));
+	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (src[i] && i < size - 1)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (ft_strlen(src));
 }

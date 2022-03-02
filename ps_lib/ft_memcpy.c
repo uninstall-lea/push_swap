@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 17:13:25 by lbisson           #+#    #+#             */
-/*   Updated: 2021/11/30 22:03:31 by lbisson          ###   ########.fr       */
+/*   Created: 2021/11/23 17:41:00 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/01 18:35:52 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ps_lib.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	while (lst && lst->next)
-		lst = lst->next;
-	return (lst);
+	size_t		i;
+	char		*d;
+	const char	*s;
+
+	i = 0;
+	d = (char *) dest;
+	s = (char *) src;
+	if (!dest && !src)
+		return (NULL);
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dest);
 }

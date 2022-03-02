@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   sort_opp.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 13:39:01 by lbisson           #+#    #+#             */
-/*   Updated: 2021/12/02 23:50:31 by lbisson          ###   ########.fr       */
+/*   Created: 2022/01/14 15:17:53 by lbisson           #+#    #+#             */
+/*   Updated: 2022/01/14 16:28:58 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_memcmp(const void *ptr1, const void *ptr2, size_t n)
+void	ft_swap(char *c1, char *c2)
 {
-	size_t			i;
-	unsigned char	*p1;
-	unsigned char	*p2;
+	char	tmp;
 
-	i = 0;
-	p1 = (unsigned char *) ptr1;
-	p2 = (unsigned char *) ptr2;
-	if (n == 0)
-		return (0);
-	while (i < n - 1 && p1[i] == p2[i])
-		i++;
-	return (p1[i] - p2[i]);
+	tmp = *c1;
+	*c1 = *c2;
+	*c2 = *c1;
+}
+
+void	ft_push(char *dst, char *src)
+{
+	ft_memmove(dst,ft_strlen(dst));
+	*dst = *src;
+}
+
+void	ft_rotate(char *s)
+{
+	size_t len;
+
+	len = ft_strlen(s);
+	ft_memmove(s[len], len);
+	s[len] = *s;
+}
+
+void	ft_rrotate(char *s)
+{
+	size_t len;
+
+	len = ft_strlen(s);
+	ft_memmove(s, len);
+	*s = s[len];
 }

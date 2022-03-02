@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 16:51:21 by lbisson           #+#    #+#             */
-/*   Updated: 2021/12/02 02:32:09 by lbisson          ###   ########.fr       */
+/*   Created: 2021/11/25 17:33:14 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/02 23:50:17 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ps_lib.h"
 
-void	*ft_calloc(size_t elem_size, size_t elem_count)
+size_t	ft_min(size_t nb1, size_t nb2)
 {
-	void	*new_elem;
+	if (nb1 > nb2)
+		return (nb2);
+	return (nb1);
+}
 
-	if (elem_size == 0 || elem_count == 0)
-	{
-		elem_size = 1;
-		elem_count = 1;
-	}
-	new_elem = malloc(elem_size * elem_count);
-	if (!new_elem)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*new_str;
+
+	if (!s)
 		return (NULL);
-	ft_bzero(new_elem, elem_size * elem_count);
-	return (new_elem);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	new_str = malloc(sizeof(char) * (ft_min(ft_strlen(s) - start, len) + 1));
+	if (!new_str)
+		return (NULL);
+	ft_strlcpy(new_str, s + start, len + 1);
+	return (new_str);
 }
