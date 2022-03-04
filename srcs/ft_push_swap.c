@@ -1,12 +1,12 @@
 /**************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*  ft_push_swap.c                                      :+:      :+:    :+:   */
+/*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:05:54 by lbisson           #+#    #+#             */
-/*   Updated: 2022/03/01 18:34:15 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/03/04 19:29:55 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@
 t_stack	if_one_arg(int ac, char **av)
 {
 	int		i;
+	int		size;
 	char	**stock_args;
 	t_stack	a;
 
+	size = 0;
 	stock_args = ft_split_args(av[1]);
-	i = 0;
-	while (stock_args[i])
-		i++;
-	a.arr = malloc(sizeof(int) * i);
+	while (stock_args[size])
+		size++;
+	a.arr = malloc(sizeof(int) * size);
 	if (!a.arr)
 		return (a);
 	i = -1;
-	while (++i < ac - 1)
+	while (++i < size)
 		a.arr[i] = ft_atoi(stock_args[i]);
 	check_error(ac, a.arr, stock_args);
 	ft_free(stock_args, i);
 	return (a);
 }
 
-t_stack	input_to_int(int ac, char **av)
+t_stack	input_to_int_arr(int ac, char **av)
 {
 	int 	i;
 	t_stack a;
@@ -56,7 +57,8 @@ void	arr_print(int size, int *arr)
 	int	i;
 
 	i = 0;
-	while (i < size)
+	(void) size;
+	while (i <3)
 	{
 		printf("%d\n", arr[i]);
 		i++;
