@@ -6,17 +6,62 @@
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:17:53 by lbisson           #+#    #+#             */
-/*   Updated: 2022/03/04 19:30:43 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/03/07 17:52:44 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swap(char *c1, char *c2)
+void	ft_swap(int *n)
 {
-	char	tmp;
+	int	tmp;
 
-	tmp = *c1;
-	*c1 = *c2;
-	*c2 = *c1;
+	tmp = *n;
+	*n = *(n + 1);
+	*(n + 1) = tmp;
 }
 
+void	ft_swap_both(int *a, int *b)
+{
+	ft_swap(a);
+	ft_swap(b);
+}
 
+void	push(int *stack1, int *stack2, size_t size)
+{
+	int	i;
+
+	i = size + 1;
+	while (--i > 0)
+		stack2[i] = stack2[i - 1];
+	*stack2 = *stack1;
+	i = -1;
+	while (++i < size)
+		stack1[i] = stack1[i + 1];
+}
+
+void	rotate(int *stack, size_t size)
+{
+	int	i;
+
+	i = -1;
+	while (++i < size)
+		stack[i] = stack[i + 1];
+}
+
+void	rotate_both(int *stack1, int *stack2, size_t size)
+{
+	rotate(stack1, size);
+	rotate(stack2, size);
+}
+
+void	rrotate(int *stack, size_t size)
+{
+	size += 1;
+	while (--size > 0)
+		stack[size] = stack[size - 1];
+}
+
+void	rrotate_both(int *stack1, int *stack2, size_t size)
+{
+	rrotate(stack1, size);
+	rrotate(stack2, size);
+}
