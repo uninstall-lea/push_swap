@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_opp.c                                         :+:      :+:    :+:   */
+/*   sort_op.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -25,16 +25,18 @@ void	ft_swap_both(int *a, int *b)
 	ft_swap(b);
 }
 
-void	push(int *stack1, int *stack2, size_t size)
+void	push(t_stack *stack1, t_stack *stack2)
 {
 	int	i;
 
-	i = size + 1;
+	i = stack1->size + 1;
 	while (--i > 0)
 		stack2[i] = stack2[i - 1];
 	*stack2 = *stack1;
+	stack1->size--;
+	stack2->size++;
 	i = -1;
-	while (++i < size)
+	while (++i < stack1->size)
 		stack1[i] = stack1[i + 1];
 }
 

@@ -24,6 +24,14 @@ typedef enum {false, true} t_bool;
 typedef struct s_stack
 {
 	int *arr;
+	size_t	size;
 }				t_stack;
+
+typedef struct s_point
+{
+	size_t	top;
+	size_t	middle;
+	size_t	bot;
+}				t_point;
 
 #endif

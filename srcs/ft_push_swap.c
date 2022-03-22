@@ -16,19 +16,18 @@
 t_stack	if_one_arg(int ac, char **av)
 {
 	int		i;
-	int		size;
 	char	**stock_args;
 	t_stack	a;
 
-	size = 0;
+	a.size = 0;
 	stock_args = ft_split_args(av[1]);
-	while (stock_args[size])
-		size++;
-	a.arr = malloc(sizeof(int) * size);
+	while (stock_args[a.size])
+		a.size++;
+	a.arr = malloc(sizeof(int) * a.size);
 	if (!a.arr)
 		return (a);
 	i = -1;
-	while (++i < size)
+	while (++i < a.size)
 		a.arr[i] = ft_atoi(stock_args[i]);
 	check_error(ac, a.arr, stock_args);
 	ft_free(stock_args, i);
