@@ -1,7 +1,7 @@
 /**************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,42 +13,51 @@
 # include "../incs/push_swap.h"
 # include <stdio.h>
 
-t_stack	if_one_arg(int ac, char **av)
+void	free_stack(t_stack *a, t_stack *b)
+{
+	(free(a, free(b));
+	exit(EXIT_FAILURE);
+}
+
+void	if_one_arg(int ac, char **av, t_stack *a, t_stack *b)
 {
 	int		i;
 	char	**stock_args;
-	t_stack	a;
 
-	a.size = 0;
+	a->size = 0;
+	b->size = 0;
 	stock_args = ft_split_args(av[1]);
-	while (stock_args[a.size])
-		a.size++;
-	a.arr = malloc(sizeof(int) * a.size);
-	if (!a.arr)
-		return (a);
+	while (stock_args[a->size])
+		a->size++;
+	a->arr = malloc(sizeof(int) * a->size);
+	b->arr = malloc(sizeof(int) * a->size);
+	if (!a->arr || !b->arr)
+		free_stack(a, b);
 	i = -1;
-	while (++i < a.size)
-		a.arr[i] = ft_atoi(stock_args[i]);
-	check_error(ac, a.arr, stock_args);
-	ft_free(stock_args, i);
-	return (a);
+	while (++i < a->size)
+		a->arr[i] = ft_atoi(stock_args[i]);
+	check_error(ac, a->arr, stock_args, 1);
 }
 
-t_stack	input_to_int_arr(int ac, char **av)
+void	stack_init(int ac, char **av, t_stack *a, t_stack *b)
 {
 	int 	i;
-	t_stack a;
 
 	if (ac == 2)
-		return (if_one_arg(ac, av));
-	a.arr = malloc(sizeof(int) * (ac - 1));
-	if (!a.arr)
-		return (a);
+	{
+		if_one_arg(ac, av);
+		return;
+	}
+	a->arr = malloc(sizeof(int) * (ac - 1));
+	b->arr = malloc(sizeof(int) * (ac - 1));
+	a->size = ac - 1;
+	b->size = 0;
+	if (!a->arr || !b-> arr)
+		free_stack(a, b);
 	i = -1;
 	while (++i < ac - 1)
-		a.arr[i] = ft_atoi(av[i + 1]);
-	check_error(ac, a.arr, av + 1);
-	return (a);
+		a->arr[i] = ft_atoi(av[i + 1]);
+	check_error(ac, a->arr, av + 1, 0);
 }
 
 void	arr_print(int size, int *arr)
@@ -67,9 +76,15 @@ void	arr_print(int size, int *arr)
 
 int	main(int ac, char **av)
 {
-	t_stack a = input_to_int(ac, av);
+	t_stack a; 
+	t_stack b;
+	
+	stack_init(ac, av, &a, &b);
+	arr_print(ac - 1, a.arr);
+	sort_5(a, b);
 	arr_print(ac - 1, a.arr);
 	free(a.arr);
+	free(b.arr);
 	return (0);
 }
 

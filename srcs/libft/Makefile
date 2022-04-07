@@ -5,37 +5,40 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lbisson <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/14 15:01:37 by lbisson           #+#    #+#              #
-#    Updated: 2022/01/14 15:01:39 by lbisson          ###   ########.fr        #
+#    Created: 2021/11/23 14:47:59 by lbisson           #+#    #+#              #
+#    Updated: 2021/12/01 05:29:09 by lbisson          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBPATH =	srcs/libft/
-CFLAGS =	-Wall -Wextra -Werror -g -I.
-NAME =		push_swap
-LIB =		libft.a
+CFLAGS = 	-Wall -Wextra -Werror -I.
+EXEC = 		libft.a
 
-SRCS =		srcs/utils/check_error.c \
-			srcs/utils/sort_op.c     \
-			srcs/utils/sort_small.c  \
-			srcs/utils/split_args.c  \
-			srcs/utils/stack_init.c  \
-			srcs/utils/utils.c       \
+SRCS = 		ft_atoi.c 		\
+			ft_bzero.c 		\
+			ft_calloc.c 	\
+			ft_free.c 		\
+			ft_isdigit.c 	\
+			ft_memcpy.c 	\
+			ft_memset.c 	\
+			ft_strchr.c 	\
+			ft_strdup.c 	\
+			ft_strlcpy.c 	\
+			ft_strlen.c 	\
+			ft_substr.c 	\
 
-OBJS =		$(SRCS:.c=.o)
+OBJS = 		${SRCS:.c=.o}
 
-all:		$(NAME)
+all: 		${EXEC}
 
-$(NAME)		$(OBJS)
-			make -c $(LIBPATH)
-			gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBPATH) $(LIB)
+$(EXEC): 	$(OBJS)
+			ar rcs ${EXEC} ${OBJS}
 
 clean:
-			rm -f $(OBJS)
+			rm -f ${OBJS}
 
 fclean: 	clean
-			rm -f $(NAME)
+			rm -f ${EXEC}
 
-re:			fclean all
+re: 		fclean all
 
-.PHONY:		all clean fclean re
+.PHONY: 	all bonus clean fclean re

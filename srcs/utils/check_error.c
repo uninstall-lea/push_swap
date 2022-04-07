@@ -73,13 +73,15 @@ t_bool	check_int_range(char **args)
 	return (true);
 }
 
-void check_error(int ac, int *arr, char **args)
+void check_error(int ac, int *arr, char **args, t_bool to_free_or_not_to_free)
 {
 	if (ac == 1 || !check_duplicate(ac - 1, arr)
 		|| !check_int_range(args))
 	{
 		free(arr);
 		write(2, "Error\n", 6);
+		if (to_free_or_not_to_free)
+			ft_free(args);
 		exit(EXIT_FAILURE);
 	}
 }
