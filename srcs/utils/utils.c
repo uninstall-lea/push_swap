@@ -1,3 +1,5 @@
+#include "../../incs/push_swap.h"
+
 /* Find the first number bigger than to_place to put to_place right before */
 int	get_index(t_stack *a, int to_place)
 {
@@ -9,8 +11,8 @@ int	get_index(t_stack *a, int to_place)
 	while (i < a->size)
 	{
 		if (a->arr[i] > to_place)
-			if (ret == -1 || a->arr[i] < a->arr[index])
-				ret = i;
+			if (index == -1 || a->arr[i] < a->arr[index])
+				index = i;
 		i++;
 	}
 	return (index);
@@ -41,7 +43,7 @@ void	move_up(t_stack *a, int index)
 	{
 		while (index)
 		{
-			rotate(a, a->size);
+			rotate(a->arr, a->size);
 			index--;
 		}
 	}
@@ -49,7 +51,7 @@ void	move_up(t_stack *a, int index)
 	{
 		while (index < a->size)
 		{
-			rrotate(a, a->size);
+			rrotate(a->arr, a->size);
 			index++;
 		}
 	}

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../incs/push_swap.h"
+#include "../../incs/push_swap.h"
 
 t_bool	check_duplicate(int size, int *arr)
 {

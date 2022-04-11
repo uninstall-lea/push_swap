@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../incs/push_swap.h"
+
 void	ft_swap(int *n)
 {
 	int	tmp;
@@ -27,7 +29,7 @@ void	ft_swap_both(int *a, int *b)
 
 void	push(t_stack *stack1, t_stack *stack2)
 {
-	int	i;
+	ssize_t	i;
 
 	i = stack1->size + 1;
 	while (--i > 0)
@@ -40,29 +42,32 @@ void	push(t_stack *stack1, t_stack *stack2)
 		stack1[i] = stack1[i + 1];
 }
 
-void	rotate(int *stack, size_t size)
+void	rotate(int *stack, int size)
 {
 	int	i;
 
-	i = -1;
-	while (++i < size)
+	i = 0;
+	while (i < size)
+	{
 		stack[i] = stack[i + 1];
+		i++;
+	}
 }
 
-void	rotate_both(int *stack1, int *stack2, size_t size)
+void	rotate_both(int *stack1, int *stack2, int size)
 {
 	rotate(stack1, size);
 	rotate(stack2, size);
 }
 
-void	rrotate(int *stack, size_t size)
+void	rrotate(int *stack, int size)
 {
 	size += 1;
 	while (--size > 0)
 		stack[size] = stack[size - 1];
 }
 
-void	rrotate_both(int *stack1, int *stack2, size_t size)
+void	rrotate_both(int *stack1, int *stack2, int size)
 {
 	rrotate(stack1, size);
 	rrotate(stack2, size);

@@ -1,26 +1,30 @@
-void sort_3(t_stack *a)
+#include "../../incs/push_swap.h"
+
+void sort_3(int *arr, int size)
 {
-	if (a-> size == 2)
-		if (a->arr[0] > a->arr[1])
-			ft_swap(a);
-	else if (a->arr[0] > a->arr[1] && a->arr[1] < a->arr[2] 
-			&& a->arr[2] > a->arr[0])
-		ft_swap(&a.arr);
-	else if (a->arr[0] > a->arr[1] && a->arr[1] < a->arr[2])
-		rotate(a, size);
-	else if (a->arr[0] > a->arr[1])
+	if (size == 2)
 	{
-		ft_swap(a);
-		rrotate(a, size);
+		if (arr[0] > arr[1])
+			ft_swap(arr);
+	}
+	else if (arr[0] > arr[1] && arr[1] < arr[2] 
+			&& arr[2] > arr[0])
+		ft_swap(arr);
+	else if (arr[0] > arr[1] && arr[1] < arr[2])
+		rotate(arr, size);
+	else if (arr[0] > arr[1])
+	{
+		ft_swap(arr);
+		rrotate(arr, size);
 	}
 
-	else if (a->arr[1] > a->arr[2] && a->arr[2] > a->arr[0])
+	else if (arr[1] > arr[2] && arr[2] > arr[0])
 	{
-		ft_swap(a);
-		rotate(a, size);
+		ft_swap(arr);
+		rotate(arr, size);
 	}
-	else if (a->arr[1] > a->arr[2])
-		rrotate(a, size);
+	else if (arr[1] > arr[2])
+		rrotate(arr, size);
 }
 
 void	sort_5(t_stack *a, t_stack *b)
@@ -32,16 +36,16 @@ void	sort_5(t_stack *a, t_stack *b)
 		push(a, b);
 		push(a, b);
 	}
-	sort_3(a, size);
+	sort_3(a->arr, a->size);
 	while (b->size) 
 	{
-		tmp = find_index(a, b->arr[0]);
+		tmp = get_index(a, b->arr[0]);
 		if (tmp == -1)
-			move_up(a, find_min(a));
+			move_up(a, get_min(a));
 		else
 			move_up(a, tmp);
 		push(b, a);
 	}
-	tmp = find_min(a);
+	tmp = get_min(a);
 	move_up(a, tmp);
 }

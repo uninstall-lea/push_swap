@@ -17,7 +17,7 @@ SRCS = 		ft_atoi.c 		\
 			ft_bzero.c 		\
 			ft_calloc.c 	\
 			ft_free.c 		\
-			ft_isdigit.c 	\
+			ft_isdigit.c	\
 			ft_memcpy.c 	\
 			ft_memset.c 	\
 			ft_strchr.c 	\

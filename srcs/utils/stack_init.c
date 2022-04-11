@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../incs/push_swap.h"
+# include "../../incs/push_swap.h"
 # include <stdio.h>
 
 void	free_stack(t_stack *a, t_stack *b)
 {
-	(free(a, free(b));
+	free((free(a), b));
 	exit(EXIT_FAILURE);
 }
 
@@ -26,7 +26,7 @@ void	if_one_arg(int ac, char **av, t_stack *a, t_stack *b)
 
 	a->size = 0;
 	b->size = 0;
-	stock_args = ft_split_args(av[1]);
+	stock_args = split_args(av[1]);
 	while (stock_args[a->size])
 		a->size++;
 	a->arr = malloc(sizeof(int) * a->size);
@@ -45,7 +45,7 @@ void	stack_init(int ac, char **av, t_stack *a, t_stack *b)
 
 	if (ac == 2)
 	{
-		if_one_arg(ac, av);
+		if_one_arg(ac, av, a, b);
 		return;
 	}
 	a->arr = malloc(sizeof(int) * (ac - 1));
@@ -81,7 +81,7 @@ int	main(int ac, char **av)
 	
 	stack_init(ac, av, &a, &b);
 	arr_print(ac - 1, a.arr);
-	sort_5(a, b);
+	sort_5(&a, &b);
 	arr_print(ac - 1, a.arr);
 	free(a.arr);
 	free(b.arr);

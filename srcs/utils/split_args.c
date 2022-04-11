@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ps_lib.h"
+#include "../../incs/push_swap.h"
 
 static size_t	nb_args(const char *str)
 {
@@ -58,7 +58,7 @@ static void	create_and_fill(size_t nb_args, const char *s, char **str)
 		str[i] = ft_substr(s, j, len);
 		if (!str[i])
 		{
-			ft_free(str, i);
+			ft_free(str);
 			return ;
 		}
 		while (s[j] && !ft_strchr(WHITESPACES, s[j]))
@@ -67,7 +67,7 @@ static void	create_and_fill(size_t nb_args, const char *s, char **str)
 	}
 }
 
-char	**ft_split_args(char const *s)
+char	**split_args(char const *s)
 {
 	size_t	nargs;
 	char	**split_str;

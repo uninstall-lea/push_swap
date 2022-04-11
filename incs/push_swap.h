@@ -13,31 +13,29 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
-# include <stdlib.h>
-# include <unistd.h>
+# include "../srcs/libft/libft.h"
 # include <limits.h>
 
 # define WHITESPACES " \t\n\v\f\r"
 
-typedef enum {false, true} t_bool;
+typedef enum e_bool {false, true}	t_bool;
 typedef struct s_stack
 {
-	int *arr;
-	size_t	size;
-}				t_stack;
+	int	*arr;
+	int	size;
+}			t_stack;
 
 /* ERROR */
-void		check_error(int ac, int *arr, char **av);
+void	check_error(int ac, int *arr, char **av, t_bool to_free_or_not_to_free);
 
 /* SORT OPERATIONS */
 void	ft_swap(int *n);
-void	rotate(int *stack, size_t size);
-void	rrotate(int *stack, size_t size);
+void	rotate(int *stack, int size);
+void	rrotate(int *stack, int size);
 void	push(t_stack *stack1, t_stack *stack2);
 void	ft_swap_both(int *a, int *b);
-void	rotate_both(int *stack1, int *stack2, size_t size);
-void	rrotate_both(int *stack1, int *stack2, size_t size);
+void	rotate_both(int *stack1, int *stack2, int size);
+void	rrotate_both(int *stack1, int *stack2, int size);
 
 /* UTILITIES */
 int		get_min(t_stack *a);
@@ -45,7 +43,8 @@ int		get_index(t_stack *a, int to_place);
 void	move_up(t_stack *a, int index);
 
 /* SORT ALGO */
-void	sort_three(t_stack *a);
-void	sort_five(t_stack *a, t_stack *b);
+char	**split_args(char const *s);
+void	sort_3(int *arr, int size);
+void	sort_5(t_stack *a, t_stack *b);
 
 #endif

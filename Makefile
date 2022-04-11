@@ -15,25 +15,25 @@ CFLAGS =	-Wall -Wextra -Werror -g -I.
 NAME =		push_swap
 LIB =		libft.a
 
-SRCS =		srcs/utils/check_error.c \
-			srcs/utils/sort_op.c     \
-			srcs/utils/sort_small.c  \
-			srcs/utils/split_args.c  \
-			srcs/utils/stack_init.c  \
-			srcs/utils/utils.c       \
+SRCS =		srcs/utils/check_error.c	\
+			srcs/utils/sort_op.c		\
+			srcs/utils/sort_small.c		\
+			srcs/utils/split_args.c		\
+			srcs/utils/stack_init.c		\
+			srcs/utils/utils.c			\
 
 OBJS =		$(SRCS:.c=.o)
 
 all:		$(NAME)
 
-$(NAME)		$(OBJS)
-			make -c $(LIBPATH)
-			gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBPATH) $(LIB)
+$(NAME):	$(OBJS)
+			make -C $(LIBPATH)
+			gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBPATH)$(LIB)
 
 clean:
 			rm -f $(OBJS)
 
-fclean: 	clean
+fclean:		clean
 			rm -f $(NAME)
 
 re:			fclean all
