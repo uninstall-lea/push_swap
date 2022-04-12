@@ -29,29 +29,32 @@ void	ft_swap_both(int *a, int *b)
 
 void	push(t_stack *stack1, t_stack *stack2)
 {
-	ssize_t	i;
+	int	i;
 
-	i = stack1->size + 1;
+	i = stack2->size+1;
 	while (--i > 0)
-		stack2[i] = stack2[i - 1];
-	*stack2 = *stack1;
+		stack2->arr[i] = stack2->arr[i - 1];
+	*(stack2->arr) = *(stack1->arr);
 	stack1->size--;
 	stack2->size++;
 	i = -1;
 	while (++i < stack1->size)
-		stack1[i] = stack1[i + 1];
+		stack1->arr[i] = stack1->arr[i + 1];
 }
 
 void	rotate(int *stack, int size)
 {
 	int	i;
+	int tmp;
 
 	i = 0;
-	while (i < size)
+	tmp = stack[i];
+	while (i < size - 1)
 	{
 		stack[i] = stack[i + 1];
 		i++;
 	}
+	stack[i] = tmp;
 }
 
 void	rotate_both(int *stack1, int *stack2, int size)
@@ -62,9 +65,12 @@ void	rotate_both(int *stack1, int *stack2, int size)
 
 void	rrotate(int *stack, int size)
 {
-	size += 1;
+	int tmp;
+
+	tmp = stack[size - 1];
 	while (--size > 0)
 		stack[size] = stack[size - 1];
+	stack[0] = tmp;
 }
 
 void	rrotate_both(int *stack1, int *stack2, int size)

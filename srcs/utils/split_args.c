@@ -19,6 +19,7 @@ static size_t	nb_args(const char *str)
 	nb_args = 0;
 	while (*str)
 	{
+		printf("the arg: %d\n", *str);
 		while (*str && ft_strchr(WHITESPACES, *str))
 			str++;
 		if (*str && !ft_strchr(WHITESPACES, *str))
@@ -58,7 +59,7 @@ static void	create_and_fill(size_t nb_args, const char *s, char **str)
 		str[i] = ft_substr(s, j, len);
 		if (!str[i])
 		{
-			ft_free(str);
+			free_split(str);
 			return ;
 		}
 		while (s[j] && !ft_strchr(WHITESPACES, s[j]))
@@ -75,6 +76,7 @@ char	**split_args(char const *s)
 	if (!s)
 		return (NULL);
 	nargs = nb_args(s);
+	printf("nargs: %lu\n", nargs);
 	split_str = malloc(sizeof(char *) * (nargs + 1));
 	if (!split_str)
 		return (NULL);

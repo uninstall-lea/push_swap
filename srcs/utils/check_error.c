@@ -12,7 +12,7 @@
 
 #include "../../incs/push_swap.h"
 
-t_bool	check_duplicate(int size, int *arr)
+int	check_duplicate(int size, int *arr)
 {
 	int	i;
 	int	j;
@@ -21,18 +21,18 @@ t_bool	check_duplicate(int size, int *arr)
 	while (i < size)
 	{
 		j = 1;
-		while (arr[i + j])
+		while (i + j < size)
 		{
 			if (arr[i] == arr[i + j])
-				return (false);
+				return (FALSE);
 			j++;
 		}
 		i++;
 	}
-	return (true);
+	return (TRUE);
 }
 
-t_bool	is_int_range(const char *nptr)
+int	is_int_range(const char *nptr)
 {
 	long long	res;
 	int			sign;
@@ -51,15 +51,15 @@ t_bool	is_int_range(const char *nptr)
 	{
 		res = (res * 10) + (*nptr - '0');
 		if (res * sign < INT_MIN || res * sign > INT_MAX)
-			return (false);
+			return (FALSE);
 		nptr++;
 	}
 	if (!ft_isdigit(*nptr) && *nptr)
-		return (false);
-	return (true);
+		return (FALSE);
+	return (TRUE);
 }
 
-t_bool	check_int_range(char **args)
+int	check_int_range(char **args)
 {
 	int				i;
 
@@ -67,21 +67,31 @@ t_bool	check_int_range(char **args)
 	while (args[i])
 	{
 		if (!is_int_range(args[i]))
-			return (false);
+			return (FALSE);
 		i++;
 	}
-	return (true);
+	return (TRUE);
 }
 
-void check_error(int ac, int *arr, char **args, t_bool to_free_or_not_to_free)
+void	check_nargs(int ac)
 {
-	if (ac == 1 || !check_duplicate(ac - 1, arr)
+	if (ac == 1)
+	{
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	check_error(char **args, t_stack *a, t_stack *b,
+		int to_free_or_not_to_free)
+{
+	if (!check_duplicate(a->size, a->arr)
 		|| !check_int_range(args))
 	{
-		free(arr);
+		free((free(a->arr), b->arr));
 		write(2, "Error\n", 6);
 		if (to_free_or_not_to_free)
-			ft_free(args);
+			free_split(args);
 		exit(EXIT_FAILURE);
 	}
 }

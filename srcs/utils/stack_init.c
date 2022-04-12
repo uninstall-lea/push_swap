@@ -11,15 +11,8 @@
 /* ************************************************************************** */
 
 # include "../../incs/push_swap.h"
-# include <stdio.h>
 
-void	free_stack(t_stack *a, t_stack *b)
-{
-	free((free(a), b));
-	exit(EXIT_FAILURE);
-}
-
-void	if_one_arg(int ac, char **av, t_stack *a, t_stack *b)
+void	if_one_arg(char **av, t_stack *a, t_stack *b)
 {
 	int		i;
 	char	**stock_args;
@@ -36,7 +29,8 @@ void	if_one_arg(int ac, char **av, t_stack *a, t_stack *b)
 	i = -1;
 	while (++i < a->size)
 		a->arr[i] = ft_atoi(stock_args[i]);
-	check_error(ac, a->arr, stock_args, 1);
+	check_error(stock_args, a, b, 1);
+	free_split(stock_args);
 }
 
 void	stack_init(int ac, char **av, t_stack *a, t_stack *b)
@@ -45,44 +39,47 @@ void	stack_init(int ac, char **av, t_stack *a, t_stack *b)
 
 	if (ac == 2)
 	{
-		if_one_arg(ac, av, a, b);
+		if_one_arg(av, a, b);
 		return;
 	}
 	a->arr = malloc(sizeof(int) * (ac - 1));
 	b->arr = malloc(sizeof(int) * (ac - 1));
 	a->size = ac - 1;
 	b->size = 0;
-	if (!a->arr || !b-> arr)
+	if (!a->arr || !b->arr)
 		free_stack(a, b);
 	i = -1;
-	while (++i < ac - 1)
+	while (++i < a->size)
 		a->arr[i] = ft_atoi(av[i + 1]);
-	check_error(ac, a->arr, av + 1, 0);
+	check_error(av + 1, a, b, 0);
 }
 
-void	arr_print(int size, int *arr)
+void	arr_print(t_stack *a, t_stack *b)
 {
 	int	i;
 
 	i = 0;
-	(void) size;
-	while (i <3)
+	while (i < a->size || i < b->size)
 	{
-		printf("%d\n", arr[i]);
+		if(i < a->size)
+			printf("%-14d", a->arr[i]);
+		if(i < b->size)
+			printf("%-14d", b->arr[i]);
+		printf("\n");
 		i++;
 	}
-	printf("-----------\n  stack a\n");
+	printf("-----------   -----------\n stack a       stack b\n");
 }
-
 int	main(int ac, char **av)
 {
 	t_stack a; 
 	t_stack b;
 	
+	check_nargs(ac);
 	stack_init(ac, av, &a, &b);
-	arr_print(ac - 1, a.arr);
+	arr_print(&a, &b);
 	sort_5(&a, &b);
-	arr_print(ac - 1, a.arr);
+	arr_print(&a, &b);
 	free(a.arr);
 	free(b.arr);
 	return (0);

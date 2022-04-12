@@ -1,5 +1,11 @@
 #include "../../incs/push_swap.h"
 
+void	free_stack(t_stack *a, t_stack *b)
+{
+	free((free(a), b));
+	exit(EXIT_FAILURE);
+}
+
 /* Find the first number bigger than to_place to put to_place right before */
 int	get_index(t_stack *a, int to_place)
 {

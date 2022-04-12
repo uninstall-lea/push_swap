@@ -32,9 +32,11 @@ $(NAME):	$(OBJS)
 
 clean:
 			rm -f $(OBJS)
+			make -C $(LIBPATH) clean
 
 fclean:		clean
 			rm -f $(NAME)
+			make -C $(LIBPATH) fclean
 
 re:			fclean all
 

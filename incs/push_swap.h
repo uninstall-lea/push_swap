@@ -15,10 +15,12 @@
 
 # include "../srcs/libft/libft.h"
 # include <limits.h>
+# include <stdio.h>
 
 # define WHITESPACES " \t\n\v\f\r"
+# define TRUE 1
+# define FALSE 0
 
-typedef enum e_bool {false, true}	t_bool;
 typedef struct s_stack
 {
 	int	*arr;
@@ -26,7 +28,8 @@ typedef struct s_stack
 }			t_stack;
 
 /* ERROR */
-void	check_error(int ac, int *arr, char **av, t_bool to_free_or_not_to_free);
+void	check_nargs(int ac);
+void	check_error(char **av, t_stack *a, t_stack *b, int to_free_or_not_to_free);
 
 /* SORT OPERATIONS */
 void	ft_swap(int *n);
@@ -41,10 +44,12 @@ void	rrotate_both(int *stack1, int *stack2, int size);
 int		get_min(t_stack *a);
 int		get_index(t_stack *a, int to_place);
 void	move_up(t_stack *a, int index);
+void	arr_print(t_stack *a, t_stack *b);
+void	free_stack(t_stack *a, t_stack *b);
 
 /* SORT ALGO */
 char	**split_args(char const *s);
-void	sort_3(int *arr, int size);
+void	sort_3(int *arr, int size, t_stack *a, t_stack *b);
 void	sort_5(t_stack *a, t_stack *b);
 
 #endif

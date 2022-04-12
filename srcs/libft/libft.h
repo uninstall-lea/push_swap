@@ -24,7 +24,7 @@ char	*ft_strdup(const char *src);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	ft_bzero(void *s, size_t n);
-void	ft_free(char **str);
+void	free_split(char **str);
 void	*ft_memset(void *ptr, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_calloc(size_t elem_size, size_t elem_count);
