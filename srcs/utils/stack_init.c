@@ -25,7 +25,7 @@ void	if_one_arg(char **av, t_stack *a, t_stack *b)
 	a->arr = malloc(sizeof(int) * a->size);
 	b->arr = malloc(sizeof(int) * a->size);
 	if (!a->arr || !b->arr)
-		free_stack(a, b);
+		free_stacks(a, b);
 	i = -1;
 	while (++i < a->size)
 		a->arr[i] = ft_atoi(stock_args[i]);
@@ -47,7 +47,7 @@ void	stack_init(int ac, char **av, t_stack *a, t_stack *b)
 	a->size = ac - 1;
 	b->size = 0;
 	if (!a->arr || !b->arr)
-		free_stack(a, b);
+		free_stacks(a, b);
 	i = -1;
 	while (++i < a->size)
 		a->arr[i] = ft_atoi(av[i + 1]);
@@ -78,7 +78,8 @@ int	main(int ac, char **av)
 	check_nargs(ac);
 	stack_init(ac, av, &a, &b);
 	arr_print(&a, &b);
-	sort_5(&a, &b);
+	//sort_5(&a, &b);
+	sort_big(&a, &b);
 	arr_print(&a, &b);
 	free(a.arr);
 	free(b.arr);

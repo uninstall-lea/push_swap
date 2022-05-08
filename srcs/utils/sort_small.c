@@ -1,6 +1,6 @@
 #include "../../incs/push_swap.h"
 
-void sort_3(int *arr, int size, t_stack *a, t_stack *b)
+void sort_3(int *arr, int size)
 {
 	if (size == 2)
 	{
@@ -35,10 +35,10 @@ void	sort_5(t_stack *a, t_stack *b)
 		push(a, b);
 		push(a, b);
 	}
-	sort_3(a->arr, a->size, a, b);
+	sort_3(a->arr, a->size);
 	while (b->size) 
 	{
-		tmp = get_index(a, b->arr[0]);
+		tmp = get_next_min(a, b->arr[0]);
 		if (tmp == -1)
 			move_up(a, get_min(a));
 		else
@@ -48,3 +48,10 @@ void	sort_5(t_stack *a, t_stack *b)
 	tmp = get_min(a);
 	move_up(a, tmp);
 }
+
+/*
+void sort_small(t_stack *a, t_stack *b)
+{
+	appeler sort_2 / sort_3 / sort_4 / sort_5
+}
+*/

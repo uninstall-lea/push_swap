@@ -1,39 +1,48 @@
 #include "../../incs/push_swap.h"
 
-void	free_stack(t_stack *a, t_stack *b)
+void	free_stacks(t_stack *a, t_stack *b)
 {
 	free((free(a), b));
 	exit(EXIT_FAILURE);
 }
 
+int	get_index(int value_searched, t_stack *stack)
+{
+	int	index;
+
+	index = 0;
+	while (index < stack->size && stack->arr[index] != value_searched)
+		index++;
+	return (index);
+}
 /* Find the first number bigger than to_place to put to_place right before */
-int	get_index(t_stack *a, int to_place)
+int	get_next_min(t_stack *stack, int to_place)
 {
 	int i;
 	int index;
 
 	i = 0;
 	index = -1;
-	while (i < a->size)
+	while (i < stack->size)
 	{
-		if (a->arr[i] > to_place)
-			if (index == -1 || a->arr[i] < a->arr[index])
+		if (stack->arr[i] > to_place)
+			if (index == -1 || stack->arr[i] < stack->arr[index])
 				index = i;
 		i++;
 	}
 	return (index);
 }
 
-int	get_min(t_stack *a)
+int	get_min(t_stack *stack)
 {
 	int i;
 	int	min;
 
 	i = 1;
 	min = 0;
-	while (i < a->size)
+	while (i < stack->size)
 	{
-		if (a->arr[min] > a->arr[i])
+		if (stack->arr[min] > stack->arr[i])
 			min = i;
 		i++;
 	}
@@ -43,21 +52,21 @@ int	get_min(t_stack *a)
 /* move_up considering if we use ra or rra
 before the middle -> ra
 after -> rra */
-void	move_up(t_stack *a, int index)
+void	move_up(t_stack *stack, int index)
 {
-	if (index < a->size / 2)
+	if (index < stack->size / 2)
 	{
 		while (index)
 		{
-			rotate(a->arr, a->size);
+			rotate(stack->arr, stack->size);
 			index--;
 		}
 	}
 	else
 	{
-		while (index < a->size)
+		while (index < stack->size)
 		{
-			rrotate(a->arr, a->size);
+			rrotate(stack->arr, stack->size);
 			index++;
 		}
 	}

@@ -27,6 +27,12 @@ typedef struct s_stack
 	int	size;
 }			t_stack;
 
+typedef struct s_chunk
+{
+	int	min;
+	int max;
+}			t_chunk;
+
 /* ERROR */
 void	check_nargs(int ac);
 void	check_error(char **av, t_stack *a, t_stack *b, int to_free_or_not_to_free);
@@ -41,15 +47,16 @@ void	rotate_both(int *stack1, int *stack2, int size);
 void	rrotate_both(int *stack1, int *stack2, int size);
 
 /* UTILITIES */
-int		get_min(t_stack *a);
-int		get_index(t_stack *a, int to_place);
-void	move_up(t_stack *a, int index);
+int		get_min(t_stack *stack);
+int		get_next_min(t_stack *stack, int to_place);
+void	move_up(t_stack *stack, int index);
 void	arr_print(t_stack *a, t_stack *b);
-void	free_stack(t_stack *a, t_stack *b);
+void	free_stacks(t_stack *a, t_stack *b);
 
 /* SORT ALGO */
 char	**split_args(char const *s);
-void	sort_3(int *arr, int size, t_stack *a, t_stack *b);
+void	sort_3(int *arr, int size);
 void	sort_5(t_stack *a, t_stack *b);
+void	sort_big(t_stack *a, t_stack *b);
 
 #endif

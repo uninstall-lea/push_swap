@@ -16,6 +16,7 @@ NAME =		push_swap
 LIB =		libft.a
 
 SRCS =		srcs/utils/check_error.c	\
+			srcs/utils/sort_big.c		\
 			srcs/utils/sort_op.c		\
 			srcs/utils/sort_small.c		\
 			srcs/utils/split_args.c		\
