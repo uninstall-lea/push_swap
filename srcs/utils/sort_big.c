@@ -26,7 +26,7 @@ int	*arr_init(t_stack *a)
 	arr = malloc(sizeof(int) * a->size);
 	if (!arr)
 		return (NULL);
-	ft_memcpy(arr, a->arr, a->size * sizeof(int));
+	ft_memcpy(arr, a->arr, sizeof(int) * a->size);
 	sort_int_arr(arr, a->size);
 	return (arr);
 }
@@ -34,26 +34,27 @@ int	*arr_init(t_stack *a)
 /* we know 500 = 22 chunks, 100 = 5 chunks */
 /* between 100 & 500 we have add 6 chunks */
 /* it's about 1 chunk every 66 numbers */
-int	nb_chunks(int nb_values)
+void	nb_chunks(int nb_values, t_chunk *chunk)
 {
+	if (nb_values == 100)
+		chunk->n_chunks = 5;
 	if (nb_values > 100)
-		return (5 + ((nb_values - 100) / 66));
-	return (0);
+		chunk->n_chunks = (5 + ((nb_values - 100) / 66));
+	return ;
 }
 
-int	chunk_size(int nb_values, int nb_chunks)
+void	chunk_size(int nb_values, t_chunk *chunk)
 {
-	return (nb_values / nb_chunks);
+	chunk->range = nb_values / chunk->n_chunks;
+	printf("hoho %d / %d = %d\n", nb_values, chunk->n_chunks, 5);
+	//printf("%d / %d = %d\n", nb_values, nb_chunks, nb_values / nb_chunks);
 }
 
-void	init_chunk(int stack_a_size, int *arr, t_chunk *chunk)
-{
-	int	range;
-
-	chunk->min = arr[0];
-	range = chunk_size(stack_a_size, nb_chunks(stack_a_size));
-	chunk->max = arr[range];
-
+void	init_chunk(int index, int *arr, t_chunk *chunk)
+{	
+	chunk->min = arr[index];
+	chunk->max = arr[index + (chunk->range)];
+	printf("min %d = / max = %d\n", chunk->min, chunk->max);
 }
 
 void	sort_big(t_stack *a, t_stack *b)
@@ -63,18 +64,22 @@ void	sort_big(t_stack *a, t_stack *b)
 	int		*a_arr_sort;
 	t_chunk	chunk;
 	
+	nb_chunks(a->size, &chunk);
+	chunk_size(a->size, &chunk);
 	a_arr_sort = arr_init(a);
 	if (!a_arr_sort)
-		return ;
+		free_stacks(a, b);
 	i = 0;
-	while (i < a->size)
+	while (i < a->size - 1)
 	{
-		init_chunk(a->size, a_arr_sort, &chunk);
+		init_chunk(i, a_arr_sort, &chunk);
 		while (a_arr_sort[i] < chunk.max)
 		{
+			printf("a_arr_sort[i] = %d / chunk_max = %d\n", a_arr_sort[i], chunk.max);
 			if (a->arr[i] >= chunk.min && a->arr[i] <= chunk.max)
 			{
-				move_up(a, i);
+				printf("oui\n");
+				move_up(a, get_index(i, a));
 				push(a, b);
 			}
 			else
@@ -88,4 +93,5 @@ void	sort_big(t_stack *a, t_stack *b)
 		}
 		*/
 	}
+	free(a_arr_sort);
 }
