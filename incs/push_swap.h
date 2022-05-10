@@ -43,10 +43,10 @@ void	check_error(char **av, t_stack *a, t_stack *b, int to_free_or_not_to_free);
 void	ft_swap(int *n);
 void	rotate(int *stack, int size);
 void	rrotate(int *stack, int size);
-void	push(t_stack *stack1, t_stack *stack2);
 void	ft_swap_both(int *a, int *b);
 void	rotate_both(int *stack1, int *stack2, int size);
 void	rrotate_both(int *stack1, int *stack2, int size);
+void	push(t_stack *stack1, t_stack *stack2);
 
 /* UTILITIES */
 int		get_min(t_stack *stack);
