@@ -50,9 +50,9 @@ void	rrotate_both(int *stack1, int *stack2, int size);
 
 /* UTILITIES */
 int		get_min(t_stack *stack);
-int		get_next_min(t_stack *stack, int to_place);
+int		get_next_min(int to_place, t_stack *stack);
 int		get_index(int value_searched, t_stack *stack);
-void	move_up(t_stack *stack, int index);
+void	move_up(int index, t_stack *stack);
 void	arr_print(t_stack *a, t_stack *b);
 void	free_stacks(t_stack *a, t_stack *b);
 

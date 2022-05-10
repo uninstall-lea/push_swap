@@ -38,15 +38,15 @@ void	sort_5(t_stack *a, t_stack *b)
 	sort_3(a->arr, a->size);
 	while (b->size) 
 	{
-		tmp = get_next_min(a, b->arr[0]);
+		tmp = get_next_min(b->arr[0], a);
 		if (tmp == -1)
-			move_up(a, get_min(a));
+			move_up(get_min(a), a);
 		else
-			move_up(a, tmp);
+			move_up(tmp, a);
 		push(b, a);
 	}
 	tmp = get_min(a);
-	move_up(a, tmp);
+	move_up(tmp, a);
 }
 
 /*

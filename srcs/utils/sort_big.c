@@ -46,15 +46,12 @@ void	nb_chunks(int nb_values, t_chunk *chunk)
 void	chunk_size(int nb_values, t_chunk *chunk)
 {
 	chunk->range = nb_values / chunk->n_chunks;
-	printf("hoho %d / %d = %d\n", nb_values, chunk->n_chunks, 5);
-	//printf("%d / %d = %d\n", nb_values, nb_chunks, nb_values / nb_chunks);
 }
 
 void	init_chunk(int index, int *arr, t_chunk *chunk)
 {	
 	chunk->min = arr[index];
 	chunk->max = arr[index + (chunk->range)];
-	printf("min %d = / max = %d\n", chunk->min, chunk->max);
 }
 
 void	sort_big(t_stack *a, t_stack *b)
@@ -73,18 +70,14 @@ void	sort_big(t_stack *a, t_stack *b)
 	while (i < a->size - 1)
 	{
 		init_chunk(i, a_arr_sort, &chunk);
-		while (a_arr_sort[i] < chunk.max)
+		if (a->arr[i] >= chunk.min && a->arr[i] <= chunk.max)
 		{
-			printf("a_arr_sort[i] = %d / chunk_max = %d\n", a_arr_sort[i], chunk.max);
-			if (a->arr[i] >= chunk.min && a->arr[i] <= chunk.max)
-			{
-				printf("oui\n");
-				move_up(a, get_index(i, a));
-				push(a, b);
-			}
-			else
-				i++;
+			move_up(i, a);
+			//printf("a->arr[%d] = %d et a_arr_sort[%d] = %d\n", get_index(i, a), a->arr[get_index(i, a)], i, a_arr_sort[i]);
+			push(a, b);
 		}
+		else
+			i++;
 		/*while (chunk.min < chunk.max)
 		{
 			index = get_index(b, chunk.min);

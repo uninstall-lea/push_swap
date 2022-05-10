@@ -16,7 +16,7 @@ int	get_index(int value_searched, t_stack *stack)
 	return (index);
 }
 /* Find the first number bigger than to_place to put to_place right before */
-int	get_next_min(t_stack *stack, int to_place)
+int	get_next_min(int to_place, t_stack *stack)
 {
 	int i;
 	int index;
@@ -52,7 +52,7 @@ int	get_min(t_stack *stack)
 /* move_up considering if we use ra or rra
 before the middle -> ra
 after -> rra */
-void	move_up(t_stack *stack, int index)
+void	move_up(int index, t_stack *stack)
 {
 	if (index < stack->size / 2)
 	{
