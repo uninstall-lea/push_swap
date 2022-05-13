@@ -58,7 +58,7 @@ void	move_up(int index, t_stack *stack)
 	{
 		while (index)
 		{
-			rotate(stack->arr, stack->size);
+			rotate(stack);
 			index--;
 		}
 	}
@@ -66,7 +66,7 @@ void	move_up(int index, t_stack *stack)
 	{
 		while (index < stack->size)
 		{
-			rrotate(stack->arr, stack->size);
+			rrotate(stack);
 			index++;
 		}
 	}

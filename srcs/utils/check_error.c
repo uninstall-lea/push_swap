@@ -82,8 +82,8 @@ void	check_nargs(int ac)
 	}
 }
 
-void	check_error(char **args, t_stack *a, t_stack *b,
-		int to_free_or_not_to_free)
+void	check_error(int to_free_or_not_to_free, char **args,
+		t_stack *a, t_stack *b)
 {
 	if (!check_duplicate(a->size, a->arr)
 		|| !check_int_range(args))

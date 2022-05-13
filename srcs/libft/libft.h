@@ -23,6 +23,7 @@ int		ft_atoi(const char *nptr);
 char	*ft_strdup(const char *src);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	ft_swap(int *a, int *b);
 void	ft_bzero(void *s, size_t n);
 void	free_split(char **str);
 void	*ft_memset(void *ptr, int c, size_t n);

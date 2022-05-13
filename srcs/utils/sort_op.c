@@ -12,19 +12,17 @@
 
 #include "../../incs/push_swap.h"
 
-void	ft_swap(int *n)
+void	swap(t_stack *stack)
 {
 	int	tmp;
 
-	tmp = *n;
-	*n = *(n + 1);
-	*(n + 1) = tmp;
-}
-
-void	ft_swap_both(int *a, int *b)
-{
-	ft_swap(a);
-	ft_swap(b);
+	tmp = *stack->arr;
+	*stack->arr = *(stack->arr + 1);
+	*(stack->arr + 1) = tmp;
+	if (stack->which_one == 'a')
+		write(1, "sa\n", 3);
+	else
+		write(1, "sb\n", 3);
 }
 
 void	push(t_stack *stack1, t_stack *stack2)
@@ -40,41 +38,41 @@ void	push(t_stack *stack1, t_stack *stack2)
 	i = -1;
 	while (++i < stack1->size)
 		stack1->arr[i] = stack1->arr[i + 1];
+	if (stack2->which_one == 'a')
+		write(1, "pa\n", 3);
+	else
+		write(1, "pb\n", 3);
 }
 
-void	rotate(int *stack, int size)
+void	rotate(t_stack *stack)
 {
 	int	i;
 	int tmp;
 
 	i = 0;
-	tmp = stack[i];
-	while (i < size - 1)
+	tmp = stack->arr[i];
+	while (i < stack->size - 1)
 	{
-		stack[i] = stack[i + 1];
+		stack->arr[i] = stack->arr[i + 1];
 		i++;
 	}
-	stack[i] = tmp;
+	stack->arr[i] = tmp;
+	if (stack->which_one == 'a')
+		write(1, "ra\n", 3);
+	else
+		write(1, "rb\n", 3);
 }
 
-void	rotate_both(int *stack1, int *stack2, int size)
-{
-	rotate(stack1, size);
-	rotate(stack2, size);
-}
-
-void	rrotate(int *stack, int size)
+void	rrotate(t_stack *stack)
 {
 	int tmp;
 
-	tmp = stack[size - 1];
-	while (--size > 0)
-		stack[size] = stack[size - 1];
-	stack[0] = tmp;
-}
-
-void	rrotate_both(int *stack1, int *stack2, int size)
-{
-	rrotate(stack1, size);
-	rrotate(stack2, size);
+	tmp = stack->arr[stack->size - 1];
+	while (--stack->size > 0)
+		stack->arr[stack->size] = stack->arr[stack->size - 1];
+	stack->arr[0] = tmp;
+	if (stack->which_one == 'a')
+		write(1, "rra\n", 4);
+	else
+		write(1, "rrb\n", 4);
 }

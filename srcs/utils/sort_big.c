@@ -1,15 +1,15 @@
 #include "../../incs/push_swap.h"
 
-void	sort_int_arr(int *arr, int size)
+void	sort_int_arr(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	while (i < size - 1)
+	while (i < stack->size - 1)
 	{
-		if (arr[i] > arr[i + 1])
+		if (stack->arr[i] > stack->arr[i + 1])
 		{
-			ft_swap(&arr[i]);
+			ft_swap(&stack->arr[i], &stack->arr[i + 1]);
 			i = 0;
 		}
 		else
@@ -27,7 +27,7 @@ int	*arr_init(t_stack *a)
 	if (!arr)
 		return (NULL);
 	ft_memcpy(arr, a->arr, sizeof(int) * a->size);
-	sort_int_arr(arr, a->size);
+	sort_int_arr(a);
 	return (arr);
 }
 
@@ -46,6 +46,7 @@ void	nb_chunks(int nb_values, t_chunk *chunk)
 void	chunk_size(int nb_values, t_chunk *chunk)
 {
 	chunk->range = nb_values / chunk->n_chunks;
+	printf("chunk range : %d\n", chunk->range);
 }
 
 void	init_chunk(int index, int size, int *arr, t_chunk *chunk)
@@ -56,8 +57,10 @@ void	init_chunk(int index, int size, int *arr, t_chunk *chunk)
 		chunk_size(size, chunk);
 	}
 	chunk->min = arr[index * chunk->range];
-	chunk->max = arr[(index + 1) * chunk->range];
-	printf("chunk min : %d / chunk max : %d\n", chunk->min, chunk->max);
+	if (index == chunk->n_chunks - 1)
+		chunk->max = arr[size - 1];
+	else
+		chunk->max = arr[((index + 1) * chunk->range - 1)];
 }
 
 void	sort_big(t_stack *a, t_stack *b)
@@ -73,25 +76,23 @@ void	sort_big(t_stack *a, t_stack *b)
 		free_stacks(a, b);
 	i = 0;
 	size_cpy = a->size;
-	nb_chunks(a->size, &chunk);
-	while (i <= chunk.n_chunks)
+	while (i < chunk.n_chunks)
 	{
 		j = 0;
 		init_chunk(i, size_cpy, a_arr_sort, &chunk);
 		while (j < size_cpy)
 		{
-			if (a->arr[0] >= chunk.min && a->arr[0] < chunk.max)
+			if (a->arr[0] >= chunk.min && a->arr[0] <= chunk.max)
 				push(a, b);
 			else
-				rotate(a->arr, a->size);
+				rotate(a);
 			j++;
 		}
-		arr_print(a, b);
 		while (b->size)
 		{
 			move_up(get_min(b), b);
 			push(b, a);
-			rotate(a->arr, a->size);
+			rotate(a);
 		}
 		i++;
 	}

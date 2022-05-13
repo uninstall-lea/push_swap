@@ -1,41 +1,42 @@
 #include "../../incs/push_swap.h"
 
-void sort_3(int *arr, int size)
+static void	sort_2(t_stack *stack)
 {
-	if (size == 2)
-	{
-		if (arr[0] > arr[1])
-			ft_swap(arr);
-	}
-	else if (arr[0] > arr[1] && arr[1] < arr[2] 
-			&& arr[2] > arr[0])
-		ft_swap(arr);
-	else if (arr[0] > arr[1] && arr[1] < arr[2])
-		rotate(arr, size);
-	else if (arr[0] > arr[1])
-	{
-		ft_swap(arr);
-		rrotate(arr, size);
-	}
-	else if (arr[1] > arr[2] && arr[2] > arr[0])
-	{
-		ft_swap(arr);
-		rotate(arr, size);
-	}
-	else if (arr[1] > arr[2])
-		rrotate(arr, size);
+	if (stack->arr[0] > stack->arr[1])
+		swap(stack);
 }
 
-void	sort_5(t_stack *a, t_stack *b)
+static void	sort_3(t_stack *stack)
+{
+	if (stack->arr[0] > stack->arr[1] && stack->arr[1] < stack->arr[2] 
+		&& stack->arr[2] > stack->arr[0])
+		swap(stack);
+	else if (stack->arr[0] > stack->arr[1] && stack->arr[1] < stack->arr[2])
+		rotate(stack);
+	else if (stack->arr[0] > stack->arr[1])
+	{
+		swap(stack);
+		rrotate(stack);
+	}
+	else if (stack->arr[1] > stack->arr[2] && stack->arr[2] > stack->arr[0])
+	{
+		swap(stack);
+		rotate(stack);
+	}
+	else if (stack->arr[1] > stack->arr[2])
+		rrotate(stack);
+}
+
+static void	sort_4_5(t_stack *a, t_stack *b)
 {
 	int	tmp;
 	
-	if (a->size == 4 || a->size == 5)
-	{
-		push(a, b);
-		push(a, b);
-	}
-	sort_3(a->arr, a->size);
+	push(a, b);
+	push(a, b);
+	if (a->size == 2)
+		sort_2(a);
+	else
+		sort_3(a);
 	while (b->size) 
 	{
 		tmp = get_next_min(b->arr[0], a);
@@ -49,17 +50,12 @@ void	sort_5(t_stack *a, t_stack *b)
 	move_up(tmp, a);
 }
 
-/*
-void sort_small(t_stack *a, t_stack *b)
+void	sort_small(t_stack *a, t_stack *b)
 {
 	if (a->size == 2)
 		sort_2(a);
 	else if (a->size == 3)
 		sort_3(a);
-	else if (a->size == 4)
-		sort_4(a, b);
-	else if (a->size == 5)
-		sort_5(a, b);
-	appeler sort_2 / sort_3 / sort_4 / sort_5
+	else
+		sort_4_5(a, b);
 }
-*/
