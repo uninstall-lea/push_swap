@@ -55,8 +55,9 @@ void	init_chunk(int index, int size, int *arr, t_chunk *chunk)
 		nb_chunks(size, chunk);
 		chunk_size(size, chunk);
 	}
-	chunk->min = arr[index];
-	chunk->max = arr[index + (chunk->range)];
+	chunk->min = arr[index * chunk->range];
+	chunk->max = arr[(index + 1) * chunk->range];
+	printf("chunk min : %d / chunk max : %d\n", chunk->min, chunk->max);
 }
 
 void	sort_big(t_stack *a, t_stack *b)
@@ -72,7 +73,8 @@ void	sort_big(t_stack *a, t_stack *b)
 		free_stacks(a, b);
 	i = 0;
 	size_cpy = a->size;
-	while (i < a->size)
+	nb_chunks(a->size, &chunk);
+	while (i <= chunk.n_chunks)
 	{
 		j = 0;
 		init_chunk(i, size_cpy, a_arr_sort, &chunk);
@@ -83,6 +85,13 @@ void	sort_big(t_stack *a, t_stack *b)
 			else
 				rotate(a->arr, a->size);
 			j++;
+		}
+		arr_print(a, b);
+		while (b->size)
+		{
+			move_up(get_min(b), b);
+			push(b, a);
+			rotate(a->arr, a->size);
 		}
 		i++;
 	}
