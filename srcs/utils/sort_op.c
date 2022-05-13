@@ -47,16 +47,13 @@ void	push(t_stack *stack1, t_stack *stack2)
 void	rotate(t_stack *stack)
 {
 	int	i;
-	int tmp;
 
 	i = 0;
-	tmp = stack->arr[i];
 	while (i < stack->size - 1)
 	{
-		stack->arr[i] = stack->arr[i + 1];
+		ft_swap(&stack->arr[i], &stack->arr[i + 1]);
 		i++;
 	}
-	stack->arr[i] = tmp;
 	if (stack->which_one == 'a')
 		write(1, "ra\n", 3);
 	else
@@ -65,12 +62,11 @@ void	rotate(t_stack *stack)
 
 void	rrotate(t_stack *stack)
 {
-	int tmp;
+	int i;
 
-	tmp = stack->arr[stack->size - 1];
-	while (--stack->size > 0)
-		stack->arr[stack->size] = stack->arr[stack->size - 1];
-	stack->arr[0] = tmp;
+	i = stack->size;
+	while (--i > 0)
+		ft_swap(&stack->arr[i], &stack->arr[i - 1]);
 	if (stack->which_one == 'a')
 		write(1, "rra\n", 4);
 	else
