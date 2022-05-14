@@ -81,13 +81,8 @@ int calcul_moves(int range, t_stack *b)
 
 	i_min = get_min(b);
 	i_max = get_max(b);
-	printf("i_min = %d / i_max = %d\n", i_min, i_max);
 	if (get_nb_moves(i_min, range) < get_nb_moves(i_max, range))
-	{
-		printf("min : %d\n", i_min);
 		return (i_min);
-	}
-	printf("max : %d\n", i_max);
 	return (i_max);	
 }
 

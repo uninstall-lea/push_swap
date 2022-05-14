@@ -12,27 +12,7 @@
 
 #include "../../incs/push_swap.h"
 
-int	check_duplicate(int size, int *arr)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 1;
-		while (i + j < size)
-		{
-			if (arr[i] == arr[i + j])
-				return (FALSE);
-			j++;
-		}
-		i++;
-	}
-	return (TRUE);
-}
-
-int	is_int_range(const char *nptr)
+static int	is_int_range(const char *nptr)
 {
 	long long	res;
 	int			sign;
@@ -59,7 +39,7 @@ int	is_int_range(const char *nptr)
 	return (TRUE);
 }
 
-int	check_int_range(char **args)
+static int	check_int_range(char **args)
 {
 	int				i;
 
@@ -73,13 +53,44 @@ int	check_int_range(char **args)
 	return (TRUE);
 }
 
+static int	check_duplicate(int size, int *arr)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 1;
+		while (i + j < size)
+		{
+			if (arr[i] == arr[i + j])
+				return (FALSE);
+			j++;
+		}
+		i++;
+	}
+	return (TRUE);
+}
+
+int	is_sort(t_stack *a)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->size - 1)
+	{
+		if (a->arr[i] >= a->arr[i + 1])
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
 void	check_nargs(int ac)
 {
 	if (ac == 1)
-	{
-		write(2, "Error\n", 6);
 		exit(EXIT_FAILURE);
-	}
 }
 
 void	check_error(int to_free_or_not_to_free, char **args,

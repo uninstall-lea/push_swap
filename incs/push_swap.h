@@ -37,6 +37,7 @@ typedef struct s_chunk
 }			t_chunk;
 
 /* ERROR */
+int		is_sort(t_stack *a);
 void	check_nargs(int ac);
 void	check_error(int to_free_or_not_to_free, char **av, t_stack *a, t_stack *b);
 

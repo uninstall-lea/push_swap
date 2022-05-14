@@ -50,7 +50,7 @@ void	chunk_size(int nb_values, t_chunk *chunk)
 
 void	init_chunk(int index, int size, int *arr, t_chunk *chunk)
 {	
-	if (index == 0)
+	if (index == chunk->n_chunks - 1)
 	{
 		nb_chunks(size, chunk);
 		chunk_size(size, chunk);
@@ -60,6 +60,21 @@ void	init_chunk(int index, int size, int *arr, t_chunk *chunk)
 		chunk->max = arr[size - 1];
 	else
 		chunk->max = arr[((index + 1) * chunk->range - 1)];
+}
+
+static void push_chunk(int size, t_chunk chunk, t_stack *src, t_stack *dest)
+{
+	int	i;
+
+	i = 0;
+		while (i < size)
+		{
+			if (src->arr[0] >= chunk.min && src->arr[0] <= chunk.max)
+				push(src, dest);
+			else
+				rotate(src);
+			i++;
+		}
 }
 
 static void	push_back(int range, t_stack *src, t_stack *dest)
@@ -81,33 +96,20 @@ static void	push_back(int range, t_stack *src, t_stack *dest)
 void	sort_big(t_stack *a, t_stack *b)
 {
 	int		i;
-	int		j;
-	int		size_cpy;
 	int		*a_arr_sort;
 	t_chunk	chunk;
 	
 	a_arr_sort = arr_init(a);
 	if (!a_arr_sort)
 		free_stacks(a, b);
-	i = 0;
-	size_cpy = a->size;
-	while (i < chunk.n_chunks)
+	nb_chunks(a->size, &chunk);
+	i = chunk.n_chunks;
+	while (--i >= 0)
 	{
-		j = 0;
-		init_chunk(i, size_cpy, a_arr_sort, &chunk);
-		while (j < size_cpy)
-		{
-			if (a->arr[0] >= chunk.min && a->arr[0] <= chunk.max)
-				push(a, b);
-			else
-				rotate(a);
-			j++;
-		}
-		
+		init_chunk(i, a->size, a_arr_sort, &chunk);
+		push_chunk(a->size, chunk, a, b);
 		push_back(chunk.range, b, a);
 		move_up(get_max(a) + 1, a);
-		i++;
 	}
-	arr_print(a, b);
 	free(a_arr_sort);
 }

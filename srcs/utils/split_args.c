@@ -19,7 +19,6 @@ static size_t	nb_args(const char *str)
 	nb_args = 0;
 	while (*str)
 	{
-		printf("the arg: %d\n", *str);
 		while (*str && ft_strchr(WHITESPACES, *str))
 			str++;
 		if (*str && !ft_strchr(WHITESPACES, *str))
@@ -76,7 +75,6 @@ char	**split_args(char const *s)
 	if (!s)
 		return (NULL);
 	nargs = nb_args(s);
-	printf("nargs: %lu\n", nargs);
 	split_str = malloc(sizeof(char *) * (nargs + 1));
 	if (!split_str)
 		return (NULL);
