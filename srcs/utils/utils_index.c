@@ -12,17 +12,6 @@
 
 #include "../../incs/push_swap.h"
 
-/* if not used, delete */
-int	get_index(int value_searched, t_stack *stack)
-{
-	int	index;
-
-	index = 0;
-	while (index < stack->size && stack->arr[index] != value_searched)
-		index++;
-	return (index);
-}
-
 int	get_min(t_stack *stack)
 {
 	int	i;
