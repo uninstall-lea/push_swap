@@ -29,7 +29,7 @@ void	push(t_stack *src, t_stack *dest)
 {
 	int	i;
 
-	i = dest->size+1;
+	i = dest->size + 1;
 	while (--i > 0)
 		dest->arr[i] = dest->arr[i - 1];
 	*(dest->arr) = *(src->arr);
@@ -62,7 +62,7 @@ void	rotate(t_stack *stack)
 
 void	rrotate(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = stack->size;
 	while (--i > 0)

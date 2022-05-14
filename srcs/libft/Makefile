@@ -16,7 +16,6 @@ EXEC = 		libft.a
 SRCS = 		ft_atoi.c 		\
 			ft_bzero.c 		\
 			ft_calloc.c 	\
-			free_split.c 	\
 			ft_isdigit.c	\
 			ft_memcpy.c 	\
 			ft_memset.c 	\

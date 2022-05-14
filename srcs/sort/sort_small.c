@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/29 21:23:38 by lbisson           #+#    #+#             */
+/*   Updated: 2021/12/02 05:14:26 by lbisson          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../incs/push_swap.h"
 
 static void	sort_2(t_stack *stack)
@@ -8,7 +20,7 @@ static void	sort_2(t_stack *stack)
 
 static void	sort_3(t_stack *stack)
 {
-	if (stack->arr[0] > stack->arr[1] && stack->arr[1] < stack->arr[2] 
+	if (stack->arr[0] > stack->arr[1] && stack->arr[1] < stack->arr[2]
 		&& stack->arr[2] > stack->arr[0])
 		swap(stack);
 	else if (stack->arr[0] > stack->arr[1] && stack->arr[1] < stack->arr[2])
@@ -30,14 +42,14 @@ static void	sort_3(t_stack *stack)
 static void	sort_4_5(t_stack *a, t_stack *b)
 {
 	int	tmp;
-	
+
 	push(a, b);
 	push(a, b);
 	if (a->size == 2)
 		sort_2(a);
 	else
 		sort_3(a);
-	while (b->size) 
+	while (b->size)
 	{
 		tmp = get_next_min(b->arr[0], a);
 		if (tmp == -1)

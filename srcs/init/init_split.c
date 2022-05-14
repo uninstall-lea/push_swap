@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_args.c                                    :+:      :+:    :+:   */
+/*   init_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -67,7 +67,7 @@ static void	create_and_fill(size_t nb_args, const char *s, char **str)
 	}
 }
 
-char	**split_args(char const *s)
+char	**init_split(char const *s)
 {
 	size_t	nargs;
 	char	**split_str;

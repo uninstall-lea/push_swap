@@ -38,11 +38,19 @@ typedef struct s_chunk
 
 /* ERROR */
 int		is_sort(t_stack *a);
-void	check_nargs(int ac);
-void	check_error(int to_free_or_not_to_free, char **av, t_stack *a, t_stack *b);
+void	check_error(int to_free_or_not_to_free, char **av,
+			t_stack *a, t_stack *b);
 
 /* INIT */
-char	**split_args(char const *s);
+int		*init_arr(t_stack *a);
+char	**init_split(char const *s);
+void	init_stack(int ac, char **av, t_stack *a, t_stack *b);
+void	nb_chunks(int nb_values, t_chunk *chunk);
+void	init_chunk(int index, int size, int *arr, t_chunk *chunk);
+
+/* SORT ALGO */
+void	sort_small(t_stack *a, t_stack *b);
+void	sort_big(t_stack *a, t_stack *b);
 
 /* SORT OPERATIONS */
 void	swap(t_stack *a);
@@ -52,17 +60,15 @@ void	rrotate(t_stack *stack);
 void	push(t_stack *src, t_stack *dest);
 
 /* UTILS */
+/* index */
 int		get_min(t_stack *stack);
 int		get_max(t_stack *stack);
 int		get_next_min(int to_place, t_stack *stack);
-int 	calcul_moves(int range, t_stack *b);
-int		get_index(int value_searched, t_stack *stack);
-void	move_up(int index, t_stack *stack);
-void	arr_print(t_stack *a, t_stack *b);
+/* free */
+void	free_split(char **str);
 void	free_stacks(t_stack *a, t_stack *b);
-
-/* SORT ALGO */
-void	sort_small(t_stack *a, t_stack *b);
-void	sort_big(t_stack *a, t_stack *b);
+/* sort */
+int		calcul_moves(int range, t_stack *b);
+void	move_up(int index, t_stack *stack);
 
 #endif

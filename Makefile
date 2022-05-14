@@ -15,13 +15,18 @@ CFLAGS =	-Wall -Wextra -Werror -g -I.
 NAME =		push_swap
 LIB =		libft.a
 
-SRCS =		srcs/utils/check_error.c	\
-			srcs/utils/sort_big.c		\
-			srcs/utils/sort_op.c		\
-			srcs/utils/sort_small.c		\
-			srcs/utils/split_args.c		\
-			srcs/utils/stack_init.c		\
-			srcs/utils/utils.c			\
+SRCS =		srcs/push_swap.c			\
+			srcs/init/check_error.c		\
+			srcs/init/init_arr.c		\
+			srcs/init/init_chunk.c		\
+			srcs/init/init_split.c		\
+			srcs/init/init_stack.c		\
+			srcs/sort/sort_big.c		\
+			srcs/sort/sort_op.c			\
+			srcs/sort/sort_small.c		\
+			srcs/utils/free.c			\
+			srcs/utils/utils_index.c	\
+			srcs/utils/utils_sort.c		\
 
 OBJS =		$(SRCS:.c=.o)
 

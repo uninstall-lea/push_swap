@@ -73,26 +73,6 @@ static int	check_duplicate(int size, int *arr)
 	return (TRUE);
 }
 
-int	is_sort(t_stack *a)
-{
-	int	i;
-
-	i = 0;
-	while (i < a->size - 1)
-	{
-		if (a->arr[i] >= a->arr[i + 1])
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
-}
-
-void	check_nargs(int ac)
-{
-	if (ac == 1)
-		exit(EXIT_FAILURE);
-}
-
 void	check_error(int to_free_or_not_to_free, char **args,
 		t_stack *a, t_stack *b)
 {
@@ -105,4 +85,18 @@ void	check_error(int to_free_or_not_to_free, char **args,
 			free_split(args);
 		exit(EXIT_FAILURE);
 	}
+}
+
+int	is_sort(t_stack *a)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->size - 1)
+	{
+		if (a->arr[i] >= a->arr[i + 1])
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }
