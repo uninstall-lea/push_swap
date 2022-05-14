@@ -73,6 +73,19 @@ void	arr_print(t_stack *a, t_stack *b)
 	printf("-----------   -----------\n stack a       stack b\n");
 }
 
+void	tellMeTheTruth(t_stack *a)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->size - 1)
+	{
+		if (a->arr[i] >= a->arr[i + 1])
+			printf("Error noob : %d >= %d\n", a->arr[i], a->arr[i + 1]);
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack a; 
@@ -80,12 +93,12 @@ int	main(int ac, char **av)
 	
 	check_nargs(ac);
 	stack_init(ac, av, &a, &b);
-	arr_print(&a, &b);
+	//arr_print(&a, &b);
 	if (a.size <= 5)
 		sort_small(&a, &b);
 	else
 		sort_big(&a, &b);
-	arr_print(&a, &b);
+	//arr_print(&a, &b);
 	free(a.arr);
 	free(b.arr);
 	return (0);

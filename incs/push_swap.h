@@ -48,11 +48,13 @@ void	swap(t_stack *a);
 void	ft_swap(int *a, int *b);
 void	rotate(t_stack *stack);
 void	rrotate(t_stack *stack);
-void	push(t_stack *stack1, t_stack *stack2);
+void	push(t_stack *src, t_stack *dest);
 
 /* UTILS */
 int		get_min(t_stack *stack);
+int		get_max(t_stack *stack);
 int		get_next_min(int to_place, t_stack *stack);
+int 	calcul_moves(int range, t_stack *b);
 int		get_index(int value_searched, t_stack *stack);
 void	move_up(int index, t_stack *stack);
 void	arr_print(t_stack *a, t_stack *b);

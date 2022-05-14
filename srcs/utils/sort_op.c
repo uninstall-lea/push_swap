@@ -25,20 +25,20 @@ void	swap(t_stack *stack)
 		write(1, "sb\n", 3);
 }
 
-void	push(t_stack *stack1, t_stack *stack2)
+void	push(t_stack *src, t_stack *dest)
 {
 	int	i;
 
-	i = stack2->size+1;
+	i = dest->size+1;
 	while (--i > 0)
-		stack2->arr[i] = stack2->arr[i - 1];
-	*(stack2->arr) = *(stack1->arr);
-	stack1->size--;
-	stack2->size++;
+		dest->arr[i] = dest->arr[i - 1];
+	*(dest->arr) = *(src->arr);
+	src->size--;
+	dest->size++;
 	i = -1;
-	while (++i < stack1->size)
-		stack1->arr[i] = stack1->arr[i + 1];
-	if (stack2->which_one == 'a')
+	while (++i < src->size)
+		src->arr[i] = src->arr[i + 1];
+	if (dest->which_one == 'a')
 		write(1, "pa\n", 3);
 	else
 		write(1, "pb\n", 3);
