@@ -72,3 +72,22 @@ void	rrotate(t_stack *stack)
 	else
 		write(1, "rrb\n", 4);
 }
+
+void	rotate_both(t_stack *stack1, t_stack *stack2)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack1->size - 1)
+	{
+		ft_swap(&stack1->arr[i], &stack1->arr[i + 1]);
+		i++;
+	}
+	i = 0;
+	while (i < stack2->size - 1)
+	{
+		ft_swap(&stack2->arr[i], &stack2->arr[i + 1]);
+		i++;
+	}
+	write(1, "rr\n", 3);
+}

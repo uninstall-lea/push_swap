@@ -12,15 +12,15 @@
 
 #include "../../incs/push_swap.h"
 
-/* we know 500 = 7 chunks, 100 = 4 chunks */
+/* we know 500 = 8 chunks, 100 = 4 chunks */
 /* between 100 & 500 we have add 5 chunks */
-/* it's about 1 chunk every 133 numbers */
+/* it's about 1 chunk every 100 numbers */
 void	nb_chunks(int nb_values, t_chunk *chunk)
 {
 	if (nb_values <= 100)
 		chunk->n_chunks = 4;
 	if (nb_values > 100)
-		chunk->n_chunks = (4 + ((nb_values - 100) / 133));
+		chunk->n_chunks = (4 + ((nb_values - 100) / 100));
 	return ;
 }
 

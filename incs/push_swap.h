@@ -58,6 +58,7 @@ void	ft_swap(int *a, int *b);
 void	rotate(t_stack *stack);
 void	rrotate(t_stack *stack);
 void	push(t_stack *src, t_stack *dest);
+void	rotate_both(t_stack *stack1, t_stack *stack2);
 
 /* UTILS */
 /* index */
