@@ -14,7 +14,7 @@
 
 static int	get_nb_moves(int i, int range)
 {
-	if (i < range / 2)
+	if (i <= range / 2)
 		return (i);
 	return (range - i);
 }
@@ -26,7 +26,7 @@ int	calcul_moves(int range, t_stack *b)
 
 	i_min = get_min(b);
 	i_max = get_max(b);
-	if (get_nb_moves(i_min, range) < get_nb_moves(i_max, range))
+	if (get_nb_moves(i_min, range) <= get_nb_moves(i_max, range))
 		return (i_min);
 	return (i_max);
 }
@@ -36,7 +36,7 @@ before the middle -> ra
 after -> rra */
 void	move_up(int index, t_stack *stack)
 {
-	if (index < stack->size / 2)
+	if (index <= stack->size / 2)
 	{	
 		while (index)
 		{

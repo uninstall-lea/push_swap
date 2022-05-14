@@ -12,12 +12,14 @@
 
 #include "../../incs/push_swap.h"
 
-static void	push_chunk(int size, t_chunk chunk, t_stack *src, t_stack *dest)
+static void	push_chunk(t_chunk chunk, t_stack *src, t_stack *dest)
 {
 	int	i;
+	int size;
 
 	i = 0;
-	while (i < size)
+	size = src->size;
+	while (i < size && src->arr[0] <= chunk.max)
 	{
 		if (src->arr[0] >= chunk.min && src->arr[0] <= chunk.max)
 			push(src, dest);
@@ -57,7 +59,7 @@ void	sort_big(t_stack *a, t_stack *b)
 	while (--i >= 0)
 	{
 		init_chunk(i, a->size, a_arr_sort, &chunk);
-		push_chunk(a->size, chunk, a, b);
+		push_chunk(chunk, a, b);
 		push_back(chunk.range, b, a);
 		move_up(get_max(a) + 1, a);
 	}
