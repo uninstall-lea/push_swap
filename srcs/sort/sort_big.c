@@ -6,7 +6,7 @@
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 19:25:04 by lbisson           #+#    #+#             */
-/*   Updated: 2022/03/04 19:25:53 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/05/16 18:45:16 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	push_chunk(t_chunk chunk, t_stack *src, t_stack *dest)
 {
 	int	i;
-	int size;
+	int	size;
 
 	i = 0;
 	size = src->size;
@@ -29,35 +29,38 @@ static void	push_chunk(t_chunk chunk, t_stack *src, t_stack *dest)
 	}
 }
 
-static void    push_back(int range, t_stack *src, t_stack *dest)
+static int	fuck_la_norme(int rr, t_stack *dest)
 {
-    int	min;
-    int	closest;
-    int	rr;
-    
+	rotate(dest);
 	rr = 0;
-    while (src->size)
-    {
-    	min = get_min(src);
-        closest = calcul_moves(range, src);
-        if (closest > 0 && closest < src->size / 2 && rr)
-        {
-           rotate_both(src, dest);
-           (closest--, min--);
-           rr = 0;
-        }
-        if (rr)
+}
+
+static void	push_back(int range, t_stack *src, t_stack *dest)
+{
+	int	min;
+	int	closest;
+	int	rr;
+
+	rr = 0;
+	while (src->size)
+	{
+		min = get_min(src);
+		closest = calcul_moves(range, src);
+		if (closest > 0 && closest < src->size / 2 && rr)
 		{
-        	rotate(dest);
+			rotate_both(src, dest);
+			closest = ((min = -1), -1);
 			rr = 0;
 		}
-        move_up(closest, src);
-        push(src, dest);
-        if (min == closest)
-            rr = 1;
-    }
-    if (rr)
-    	rotate(dest);
+		if (rr)
+			fuck_la_norme(rr, dest);
+		move_up(closest, src);
+		push(src, dest);
+		if (min == closest)
+			rr = 1;
+	}
+	if (rr)
+		fuck_la_norme(rr, dest);
 }
 
 void	sort_big(t_stack *a, t_stack *b)

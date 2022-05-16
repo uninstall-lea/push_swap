@@ -6,13 +6,13 @@
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 21:23:38 by lbisson           #+#    #+#             */
-/*   Updated: 2021/12/02 05:14:26 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/05/16 18:49:10 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
 
-void	sort_int_arr(int size, int *arr)
+static void	sort_int_arr(int size, int *arr)
 {
 	int	i;
 

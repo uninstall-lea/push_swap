@@ -6,13 +6,13 @@
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:05:54 by lbisson           #+#    #+#             */
-/*   Updated: 2022/03/04 19:29:55 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/05/16 18:50:49 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
 
-void	if_one_arg(char **av, t_stack *a, t_stack *b)
+static void	if_one_arg(char **av, t_stack *a, t_stack *b)
 {
 	int		i;
 	char	**stock_args;
