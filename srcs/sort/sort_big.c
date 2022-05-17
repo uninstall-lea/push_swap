@@ -29,10 +29,10 @@ static void	push_chunk(t_chunk chunk, t_stack *src, t_stack *dest)
 	}
 }
 
-static int	fuck_la_norme(int rr, t_stack *dest)
+static void	fuck_la_norme(int *rr, t_stack *dest)
 {
 	rotate(dest);
-	rr = 0;
+	*rr = 0;
 }
 
 static void	push_back(int range, t_stack *src, t_stack *dest)
@@ -49,18 +49,18 @@ static void	push_back(int range, t_stack *src, t_stack *dest)
 		if (closest > 0 && closest < src->size / 2 && rr)
 		{
 			rotate_both(src, dest);
-			closest = ((min = -1), -1);
+			closest = ((min = min- 1), closest - 1);
 			rr = 0;
 		}
 		if (rr)
-			fuck_la_norme(rr, dest);
+			fuck_la_norme(&rr, dest);
 		move_up(closest, src);
 		push(src, dest);
 		if (min == closest)
 			rr = 1;
 	}
 	if (rr)
-		fuck_la_norme(rr, dest);
+		fuck_la_norme(&rr, dest);
 }
 
 void	sort_big(t_stack *a, t_stack *b)
