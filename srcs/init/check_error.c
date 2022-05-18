@@ -19,6 +19,8 @@ static int	is_int_range(const char *nptr)
 
 	res = 0;
 	sign = 1;
+	if (ft_strlen(nptr) == 1 && (*nptr == '-' || *nptr == '+'))
+		return (FALSE);
 	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
 		nptr++;
 	if (*nptr == '+' || *nptr == '-')
