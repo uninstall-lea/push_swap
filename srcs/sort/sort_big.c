@@ -6,7 +6,7 @@
 /*   By: lbisson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 19:25:04 by lbisson           #+#    #+#             */
-/*   Updated: 2022/05/16 18:45:16 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/05/20 16:24:10 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	push_back(int range, t_stack *src, t_stack *dest)
 		if (closest > 0 && closest < src->size / 2 && rr)
 		{
 			rotate_both(src, dest);
-			closest = ((min = min- 1), closest - 1);
+			closest = ((min = min - 1), closest - 1);
 			rr = 0;
 		}
 		if (rr)
